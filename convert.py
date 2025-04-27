@@ -10,9 +10,13 @@ def to_arabic(n):
         'm': 1000
     }
 
-    if type(n) is not str:
-        return "Input must be a Roman numeral"
-    elif n.lower() not in numerals:
-        return "Only 'i', 'v', 'x', 'l', 'c', 'd' and 'm' are allowed in the input"
-    else:
-        return numerals[n.lower()]
+    sum = 0
+    last = float("inf")
+    for i in range(len(n)):
+        index = n[i].lower()
+        sum += numerals[index]
+        if numerals[index] > last:
+            sum -= 2 * last
+        last = numerals[index]
+    
+    return sum
