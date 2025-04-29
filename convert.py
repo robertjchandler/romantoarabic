@@ -24,22 +24,34 @@ def to_arabic(n):
 def to_roman(n):
     numerals = {
         1: 'i',
+        4: 'iv',
         5: 'v',
+        9: 'ix',
         10: 'x',
+        40: 'xl',
         50: 'l',
+        90: 'xc',
         100: 'c',
+        400: 'cd',
         500: 'd',
+        900: 'cm',
         1000: 'm'
     }
 
     indexes = {
         0: 1000,
-        1: 500,
-        2: 100,
-        3: 50,
-        4: 10,
-        5: 5,
-        6: 1
+        1: 900,
+        2: 500,
+        3: 400,
+        4: 100,
+        5: 90,
+        6: 50,
+        7: 40,
+        8: 10,
+        9: 9,
+        10: 5,
+        11: 4,
+        12: 1
     }
 
     sum = ''
@@ -49,4 +61,4 @@ def to_roman(n):
         sum += count * numerals[val]
         n -= count * val
         
-    return sum
+    return sum.upper()
