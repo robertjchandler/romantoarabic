@@ -1,5 +1,4 @@
 def to_arabic(n):
-    # The values of all single Roman numerals
     numerals = {
         'i': 1,
         'v': 5,
@@ -16,7 +15,38 @@ def to_arabic(n):
         index = n[i].lower()
         sum += numerals[index]
         if numerals[index] > last:
+            # Because last has already been added once
             sum -= 2 * last
         last = numerals[index]
     
+    return sum
+
+def to_roman(n):
+    numerals = {
+        1: 'i',
+        5: 'v',
+        10: 'x',
+        50: 'l',
+        100: 'c',
+        500: 'd',
+        1000: 'm'
+    }
+
+    indexes = {
+        0: 1000,
+        1: 500,
+        2: 100,
+        3: 50,
+        4: 10,
+        5: 5,
+        6: 1
+    }
+
+    sum = ''
+    for i in range(len(indexes)):
+        val = indexes[i]
+        count = n // val
+        sum += count * numerals[val]
+        n -= count * val
+        
     return sum
