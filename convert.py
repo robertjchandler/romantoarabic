@@ -1,18 +1,20 @@
 def to_arabic(n):
     numerals = {
-        'i': 1,
-        'v': 5,
-        'x': 10,
-        'l': 50,
-        'c': 100,
-        'd': 500,
-        'm': 1000
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000
     }
 
     sum = 0
     last = float("inf")
     for i in range(len(n)):
-        index = n[i].lower()
+        index = n[i].upper()
+        if index not in numerals:
+            return
         sum += numerals[index]
         if numerals[index] > last:
             # Because last has already been added once
@@ -23,19 +25,19 @@ def to_arabic(n):
 
 def to_roman(n):
     numerals = {
-        1: 'i',
-        4: 'iv',
-        5: 'v',
-        9: 'ix',
-        10: 'x',
-        40: 'xl',
-        50: 'l',
-        90: 'xc',
-        100: 'c',
-        400: 'cd',
-        500: 'd',
-        900: 'cm',
-        1000: 'm'
+        1: 'I',
+        4: 'IV',
+        5: 'V',
+        9: 'IX',
+        10: 'X',
+        40: 'XL',
+        50: 'L',
+        90: 'XC',
+        100: 'C',
+        400: 'CD',
+        500: 'D',
+        900: 'CM',
+        1000: 'M'
     }
 
     indexes = {
@@ -56,9 +58,9 @@ def to_roman(n):
 
     sum = ''
     for i in range(len(indexes)):
-        val = indexes[i]
-        count = n // val
-        sum += count * numerals[val]
-        n -= count * val
+        value = indexes[i]
+        count = n // value
+        sum += count * numerals[value]
+        n -= count * value
         
-    return sum.upper()
+    return sum
