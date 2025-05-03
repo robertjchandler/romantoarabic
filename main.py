@@ -1,16 +1,19 @@
-import convert
+import convert, sys
 
 def main():
-    # 1918, the first year of the Spanish flu pandemic
-    value = ("MCMXVIII", 1918)
-    for i in range(len(value)):
-        n = value[i] # To be replaced by user input
-        t = type(n)
-        if t == int:
-            print(convert.to_roman(n))
-        elif t == str:
-            print(convert.to_arabic(n))
+    valid_numerals = "0123456789"
+    if len(sys.argv) == 3:
+        # Command line arguments
+        if sys.argv[1] == "-r":
+            for numeral in sys.argv[2]:
+                if numeral not in valid_numerals:
+                    return
+            print(convert.to_roman(int(sys.argv[2])))
+        elif sys.argv[1] == "-a":
+            print(convert.to_arabic(sys.argv[2]))
         else:
             return
+    else:
+        return
         
 main()
